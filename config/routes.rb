@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   patch "/list_games/:id", controller: "list_games", action: "update"
   delete "/list_games/:id", controller: "list_games", action: "destroy"
 
-  get "/games", controller: "games", action: "index"
+  post "/games", controller: "games", action: "index"
   get "/games/:id", controller: "games", action: "show"
 
   post "/sessions", controller: "sessions", action: "create"
