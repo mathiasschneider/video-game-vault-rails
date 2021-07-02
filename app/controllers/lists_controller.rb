@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
   before_action :authenticate_user
   def index
-    lists = List.all
+    lists = List.where(user_id: current_user.id)
     render json: lists
   end
 
@@ -20,7 +20,11 @@ class ListsController < ApplicationController
 
   def show
     list = List.find(params[:id])
-    render json: list
+    if list.public || list.user_id == current_user.id
+      render json: list
+    else
+      render json: {message: "You do not have permission to view this list."}
+    end
   end
 
   def update
