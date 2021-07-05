@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email
+  attributes :id, :username, :email, :lists
 
-  # has_many :lists, if: :current_user
+  has_many :lists
 end
