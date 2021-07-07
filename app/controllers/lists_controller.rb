@@ -31,7 +31,13 @@ class ListsController < ApplicationController
     list = List.find(params[:id])
     if current_user.id == list.user_id
       list.title = params[:title] || list.title
-      list.public = params[:public] || list.public
+      # list.public = params[:public] || list.public
+      if list.public == "true"
+        list.public = true
+      else
+        list.public = false
+      end
+
       if list.save
         render json: list
       else
