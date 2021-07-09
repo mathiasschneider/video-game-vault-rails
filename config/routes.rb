@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   delete "/list_games/:id", controller: "list_games", action: "destroy"
 
   post "/games", controller: "games", action: "index"
-  get "/games/:id", controller: "games", action: "show"
+  post "/games/:id", controller: "games", action: "show"
 
   post "/sessions", controller: "sessions", action: "create"
 end
