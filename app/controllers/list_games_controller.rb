@@ -4,7 +4,9 @@ class ListGamesController < ApplicationController
     list_game = ListGame.new(
       list_id: params[:list_id],
       igdb_game_id: params[:igdb_game_id],
-      quantity: params[:quantity]
+      quantity: params[:quantity],
+      title: params[:title],
+      image_url: params[:image_url]
     )
     if current_user.id == list_game.list.user_id
       if list_game.save
