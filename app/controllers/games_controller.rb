@@ -7,7 +7,7 @@ class GamesController < ApplicationController
   end
 
   def show
-    response = HTTP.headers("Authorization" => "Bearer #{Rails.application.credentials.igdb_api_key}", "Client-ID" => "#{Rails.application.credentials.igdb_client_id}").post("https://api.igdb.com/v4/games", :body => 'fields id, name, platforms.name, genres.name, cover.url, involved_companies.company.name, rating, similar_games.name, summary; where id = %{game_id};' % {game_id:params[:id]})
+    response = HTTP.headers("Authorization" => "Bearer #{Rails.application.credentials.igdb_api_key}", "Client-ID" => "#{Rails.application.credentials.igdb_client_id}").post("https://api.igdb.com/v4/games", :body => 'fields id, name, platforms.name, genres.name, cover.url, involved_companies.company.name, rating, similar_games.name, summary, release_dates.y; where id = %{game_id};' % {game_id:params[:id]})
 
     render json: response.parse(:json)
   end

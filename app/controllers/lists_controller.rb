@@ -20,23 +20,20 @@ class ListsController < ApplicationController
 
   def show
     list = List.find(params[:id])
-    if list.public || list.user_id == current_user.id
-      render json: list
-    else
-      render json: {message: "You do not have permission to view this list."}
-    end
+    render json: list
   end
 
   def update
     list = List.find(params[:id])
     if current_user.id == list.user_id
       list.title = params[:title] || list.title
+      list.public = true
       # list.public = params[:public] || list.public
-      if list.public == "true"
-        list.public = true
-      else
-        list.public = false
-      end
+      # if list.public == "true"
+      #   list.public = true
+      # else
+      #   list.public = false
+      # end
 
       if list.save
         render json: list
